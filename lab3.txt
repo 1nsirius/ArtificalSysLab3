@@ -1,0 +1,69 @@
+% Classes and their attributes
+
+% Client
+client('00001', 'Ivanov Ivan Ivanovich', '12345', '+375 XX XXX XX XX').
+
+% Order
+order('12345', 'Awaiting Pickup', '2023-10-01 12:00', null, '0000001', '105', '2001').
+
+% Pickup Point
+pickup_point('001', 'Pickup Point in Center', 'Example St., 1', 'Mon-Sun: 9:00-21:00', 'info@example.com').
+
+% Employee
+employee('Petrov Dmitry Ivanovich', '+375 XX XXX XX XX', 'Mon-Wed: 9:00-14:00', '001').
+
+% Warehouse
+warehouse('0000001', 'Central St., 1', 1000, '001').
+
+% Return
+return('2023-10-03 12:00', 'Damaged').
+
+% Payment
+payment('Card', '178 BYN', '2023-10-01 12:01', '105').
+
+% Product
+product('Book', '178 BYN', 1000, '2001').
+
+% Warehouse Employee
+warehouse_employee('0000001', 'Petrov Petr Petrovich', '+375 XX XXX XX XX').
+
+% Procedures
+
+% Get client information
+get_client_info(ID, Name, OrderNo, Contact) :-
+    client(ID, Name, OrderNo, Contact).
+
+% Check order status
+check_order_status(OrderNo, Status) :-
+    order(OrderNo, Status, _, _, _, _, _).
+
+% Get pickup point information
+get_pickup_point_info(ID, Name, Address, Hours, Contact) :-
+    pickup_point(ID, Name, Address, Hours, Contact).
+
+% Get product information
+get_product_info(ID, Name, Price, Stock) :-
+    product(Name, Price, Stock, ID).
+
+% Confirm return
+confirm_return(Date, Reason) :-
+    assert(return(Date, Reason)).
+
+% Sample data (already added above)
+
+% Queries
+
+% 1. Get client information
+% ?- get_client_info('00001', Name, OrderNo, Contact).
+
+% 2. Check order status
+% ?- check_order_status('12345', Status).
+
+% 3. Get pickup point information
+% ?- get_pickup_point_info('001', Name, Address, Hours, Contact).
+
+% 4. Get product information
+% ?- get_product_info('2001', Name, Price, Stock).
+
+% 5. Confirm product return
+% ?- confirm_return('2023-10-03 12:00', 'Damaged').
